@@ -5,7 +5,7 @@ import Navbar from './componenets/layout/Navbar';
 
 import 'materialize-css/dist/css/materialize.min.css';
 import M from 'materialize-css/dist/js/materialize.min.js';
-import './App.css';
+import './main.scss';
 
 function App() {
   useEffect(() => {
