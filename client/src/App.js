@@ -1,4 +1,7 @@
 import React, { useEffect, Fragment } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+import Navbar from './componenets/layout/Navbar';
 
 import 'materialize-css/dist/css/materialize.min.css';
 import M from 'materialize-css/dist/js/materialize.min.js';
@@ -6,13 +9,15 @@ import './App.css';
 
 function App() {
   useEffect(() => {
-    // Init Materialize JS
     M.AutoInit();
   });
   return (
-    <Fragment>
-      <p>Hello World! This is some text.</p>
-    </Fragment>
+    <Router>
+      <Fragment>
+        <Navbar />
+        <p>Hello World! This is some text.</p>
+      </Fragment>
+    </Router>
   );
 }
 
