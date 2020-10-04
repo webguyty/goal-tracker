@@ -1,0 +1,3 @@
+{
+  "mongoURI": "mongodb+srv://webguyty:webguyty1@cluster0.ggx35.mongodb.net/goals?retryWrites=true&w=majority"
+}
