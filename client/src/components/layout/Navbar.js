@@ -1,50 +1,68 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useContext } from 'react';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
+import AuthContext from '../../context/auth/authContext';
+
 const Navbar = () => {
+  const authContext = useContext(AuthContext);
+
+  const { isAuthenticated, loginUser, logout } = authContext;
+
   useEffect(() => {
+    // Initialize Sidebar
     var elems = document.querySelectorAll('.sidenav');
     M.Sidenav.init(elems, { edge: 'right' });
     // es-lint disable-next-line
   }, []);
 
+  const linksGuest = (
+    <Fragment>
+      <li>
+        <a href='/#' onClick={() => loginUser()}>
+          Login
+        </a>
+      </li>
+      <li>
+        <a href='/#'>Register</a>
+      </li>
+      <li>
+        <a href='/#'>How to use</a>
+      </li>
+    </Fragment>
+  );
+
+  const linksUser = (
+    <Fragment>
+      <li>
+        <a href='/#' onClick={() => logout()}>
+          Logout
+        </a>
+      </li>
+    </Fragment>
+  );
+
   return (
     <Fragment>
       <nav>
-        <div class='nav-wrapper'>
-          <a href='#!' class='brand-logo'>
+        <div className='nav-wrapper'>
+          <a href='/#' className='brand-logo'>
             Goal Tracker
           </a>
-          <a href='#' data-target='mobile-demo' class='sidenav-trigger right'>
-            <i class='material-icons'>menu</i>
+          <a
+            href='/#'
+            data-target='mobile-demo'
+            className='sidenav-trigger right'
+          >
+            <i className='material-icons'>menu</i>
           </a>
-          <ul class='right hide-on-med-and-down'>
-            <li>
-              <a href='sass.html'>Login</a>
-            </li>
-            <li>
-              <a href='badges.html'>Register</a>
-            </li>
-            <li>
-              <a href='collapsible.html'>How it works</a>
-            </li>
+          <ul className='right hide-on-med-and-down'>
+            {isAuthenticated ? linksUser : linksGuest}
           </ul>
         </div>
       </nav>
 
-      <ul class='sidenav no-autoinit' id='mobile-demo'>
-        <li>
-          <a href='sass.html'>Sass</a>
-        </li>
-        <li>
-          <a href='badges.html'>Components</a>
-        </li>
-        <li>
-          <a href='collapsible.html'>Javascript</a>
-        </li>
-        <li>
-          <a href='mobile.html'>Mobile</a>
-        </li>
+      <ul className='sidenav no-autoinit' id='mobile-demo'>
+        {isAuthenticated ? linksUser : linksGuest}
       </ul>
     </Fragment>
   );
