@@ -2,6 +2,7 @@ import React, { useEffect, Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Navbar from './components/layout/Navbar';
+import Login from './components/pages/Login';
 
 import 'materialize-css/dist/css/materialize.min.css';
 import M from 'materialize-css/dist/js/materialize.min.js';
@@ -18,7 +19,11 @@ const App = () => {
       <Router>
         <Fragment>
           <Navbar />
-          <p>Hello World! This is some text.</p>
+          <div className='container'>
+            <Switch>
+              <Route exact path='/login' component={Login}></Route>
+            </Switch>
+          </div>
         </Fragment>
       </Router>
     </AuthState>

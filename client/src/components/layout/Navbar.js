@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useContext } from 'react';
-import M from 'materialize-css/dist/js/materialize.min.js';
+import { Link } from 'react-router-dom';
 
+import M from 'materialize-css/dist/js/materialize.min.js';
 import AuthContext from '../../context/auth/authContext';
 
 const Navbar = () => {
@@ -18,9 +19,9 @@ const Navbar = () => {
   const linksGuest = (
     <Fragment>
       <li>
-        <a href='/#' onClick={() => loginUser()}>
+        <Link to='/login' onClick={() => loginUser()}>
           Login
-        </a>
+        </Link>
       </li>
       <li>
         <a href='/#'>Register</a>
@@ -34,9 +35,9 @@ const Navbar = () => {
   const linksUser = (
     <Fragment>
       <li>
-        <a href='/#' onClick={() => logout()}>
+        <Link to='/' onClick={() => logout()}>
           Logout
-        </a>
+        </Link>
       </li>
     </Fragment>
   );
@@ -45,9 +46,9 @@ const Navbar = () => {
     <Fragment>
       <nav>
         <div className='nav-wrapper'>
-          <a href='/#' className='brand-logo'>
+          <Link to='/' className='brand-logo'>
             Goal Tracker
-          </a>
+          </Link>
           <a
             href='/#'
             data-target='mobile-demo'
