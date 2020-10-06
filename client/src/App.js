@@ -10,6 +10,7 @@ import Navbar from './components/layout/Navbar';
 import Home from './components/pages/Home';
 import Dashboard from './components/pages/Dashboard';
 import Login from './components/pages/Login';
+import Register from './components/pages/Register';
 
 import 'materialize-css/dist/css/materialize.min.css';
 import M from 'materialize-css/dist/js/materialize.min.js';
@@ -32,6 +33,7 @@ const App = () => {
               <Route exact path='/' to component={Home}></Route>
               <Route exact path='/dashboard' to component={Dashboard}></Route>
               <Route exact path='/login' component={Login}></Route>
+              <Route exact path='/register' component={Register}></Route>
             </Switch>
           </div>
         </Fragment>

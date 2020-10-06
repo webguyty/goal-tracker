@@ -24,13 +24,25 @@ const Login = () => {
         <form onSubmit={onSubmit} className='col s12 m8 offset-m2'>
           <div className='row'>
             <div className='input-field col s12'>
-              <input id='username' type='text' className='validate' />
+              <input
+                id='username'
+                type='text'
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                className='validate'
+              />
               <label htmlFor='username'>Username</label>
             </div>
           </div>
           <div className='row'>
             <div className='input-field col s12'>
-              <input id='password' type='password' className='validate' />
+              <input
+                id='password'
+                type='password'
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className='validate'
+              />
               <label htmlFor='password'>Password</label>
             </div>
           </div>
