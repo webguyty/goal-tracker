@@ -20,9 +20,15 @@ const Register = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    loginUser();
-    M.toast({ html: 'Thanks you for creating an account!' });
-    history.push('/dashboard');
+
+    if (user.password !== user.password2) {
+      M.toast({ html: 'Passwords do not match', classes: 'red' });
+    } else {
+      loginUser();
+      M.toast({ html: 'Thank you for creating an account!' });
+      history.push('/dashboard');
+    }
+    console.log(user);
   };
 
   return (
