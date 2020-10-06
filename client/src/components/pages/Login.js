@@ -1,10 +1,27 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import AuthContext from '../../context/auth/authContext';
+import { useHistory } from 'react-router-dom';
 
 const Login = () => {
+  const authContext = useContext(AuthContext);
+  const { isAuthenticated, loginUser, logout } = authContext;
+  const history = useHistory();
+
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    console.log('fired');
+    loginUser();
+
+    history.push('/dashboard');
+  };
+
   return (
     <div className='login__page'>
       <div className='row'>
-        <form action='' className='col s12 m8 offset-m2'>
+        <form onSubmit={onSubmit} className='col s12 m8 offset-m2'>
           <div className='row'>
             <div className='input-field col s12'>
               <input id='username' type='text' className='validate' />
@@ -18,11 +35,7 @@ const Login = () => {
             </div>
           </div>
           <div className='row center-align'>
-            <button
-              className='btn waves-effect waves-light'
-              type='submit'
-              name='action'
-            >
+            <button className='btn waves-effect waves-light' type='submit'>
               Submit
               <i className='material-icons right'>send</i>
             </button>

@@ -19,9 +19,7 @@ const Navbar = () => {
   const linksGuest = (
     <Fragment>
       <li>
-        <Link to='/login' onClick={() => loginUser()}>
-          Login
-        </Link>
+        <Link to='/login'>Login</Link>
       </li>
       <li>
         <a href='/#'>Register</a>
