@@ -14,7 +14,9 @@ const Register = () => {
 
   const history = useHistory();
 
-  const onChange = (e) => {};
+  const onChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -33,10 +35,12 @@ const Register = () => {
               <div className='input-field col s12'>
                 <input
                   id='username'
+                  name='username'
                   type='text'
                   value={user.username}
                   onChange={onChange}
                   className='validate'
+                  required
                 />
                 <label htmlFor='username'>Username</label>
               </div>
@@ -45,10 +49,12 @@ const Register = () => {
               <div className='input-field col s12'>
                 <input
                   id='password'
+                  name='password'
                   type='password'
                   value={user.password}
                   onChange={onChange}
                   className='validate'
+                  required
                 />
                 <label htmlFor='password'>Password</label>
               </div>
@@ -57,10 +63,12 @@ const Register = () => {
               <div className='input-field col s12'>
                 <input
                   id='password2'
+                  name='password2'
                   type='password'
                   value={user.password2}
                   onChange={onChange}
                   className='validate'
+                  required
                 />
                 <label htmlFor='password'>Retype Password</label>
               </div>
