@@ -1,3 +1,4 @@
 {
-  "mongoURI": "mongodb+srv://webguyty:webguyty1@cluster0.ggx35.mongodb.net/goals?retryWrites=true&w=majority"
+  "mongoURI": "mongodb+srv://webguyty:webguyty1@cluster0.ggx35.mongodb.net/goals?retryWrites=true&w=majority",
+  "jwtSecret": "secKK234lN1"
 }
