@@ -5,7 +5,7 @@ import AuthContext from '../../context/auth/authContext';
 
 const Register = () => {
   const authContext = useContext(AuthContext);
-  const { isAuthenticated, loginUser } = authContext;
+  const { isAuthenticated, loginUser, register } = authContext;
   const [user, setUser] = useState({
     username: '',
     password: '',
@@ -24,11 +24,14 @@ const Register = () => {
     if (user.password !== user.password2) {
       M.toast({ html: 'Passwords do not match', classes: 'red' });
     } else {
-      loginUser();
+      register({
+        username: user.username,
+        password: user.password,
+      });
       M.toast({ html: 'Thank you for creating an account!' });
       history.push('/dashboard');
     }
-    console.log(user);
+    // console.log(user);
   };
 
   return (
