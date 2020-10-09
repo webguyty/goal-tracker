@@ -7,7 +7,7 @@ import AuthContext from '../../context/auth/authContext';
 const Navbar = () => {
   const authContext = useContext(AuthContext);
 
-  const { isAuthenticated, loginUser, logout } = authContext;
+  const { isAuthenticated, logout } = authContext;
 
   useEffect(() => {
     // Initialize Sidebar

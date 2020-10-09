@@ -4,17 +4,20 @@ import AuthContext from '../../context/auth/authContext';
 
 const Home = () => {
   const authContext = useContext(AuthContext);
-  const { isAuthenticated } = authContext;
+  const { isAuthenticated, loadUser } = authContext;
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    loadUser();
+    // eslint-disable-next-line
+  }, []);
 
-  if (isAuthenticated) {
-    return (
-      <Route>
-        <Redirect to='/dashboard' />
-      </Route>
-    );
-  }
+  // if (isAuthenticated) {
+  //   return (
+  //     <Route>
+  //       <Redirect to='/dashboard' />
+  //     </Route>
+  //   );
+  // }
 
   return (
     <div className='home__page'>

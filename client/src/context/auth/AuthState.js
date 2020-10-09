@@ -94,8 +94,6 @@ const AuthState = (props) => {
     const headers = configureHeaders(localStorage.token);
 
     try {
-      // const res = await axios.post('api/auth', formData, config);
-
       const res = await fetch('api/auth', {
         method: 'POST',
         headers: headers,
@@ -114,8 +112,6 @@ const AuthState = (props) => {
 
       loadUser();
     } catch (err) {
-      console.log(err);
-
       dispatch({
         type: LOGIN_FAIL,
         payload: err,
@@ -130,12 +126,12 @@ const AuthState = (props) => {
     });
   };
 
-  // // Clear Errors
-  // const clearErrors = (params) => {
-  //   dispatch({
-  //     type: CLEAR_ERRORS,
-  //   });
-  // };
+  // Clear Errors
+  const clearErrors = (params) => {
+    dispatch({
+      type: CLEAR_ERRORS,
+    });
+  };
 
   return (
     <AuthContext.Provider
@@ -149,7 +145,7 @@ const AuthState = (props) => {
         loadUser,
         loginUser,
         logout,
-        // clearErrors,
+        clearErrors,
       }}
     >
       {props.children}
