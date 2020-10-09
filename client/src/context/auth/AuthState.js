@@ -9,7 +9,7 @@ import {
   USER_LOADED,
   AUTH_ERROR,
   LOGIN_SUCCESS,
-  // LOGIN_FAIL,
+  LOGIN_FAIL,
   LOGOUT,
   CLEAR_ERRORS,
 } from '../types';
@@ -28,9 +28,6 @@ const AuthState = (props) => {
   // Load User
   const loadUser = async () => {
     const headers = configureHeaders(localStorage.token);
-    // if (localStorage.token) {
-    //   configureHeaders(localStorage.token);
-    // }
 
     try {
       const res = await fetch('./api/auth', {
@@ -42,7 +39,6 @@ const AuthState = (props) => {
 
       // If response is false, throw error with message from auth middleware
       if (!res.ok) throw data.msg;
-
       dispatch({
         type: USER_LOADED,
         payload: data,
@@ -58,10 +54,8 @@ const AuthState = (props) => {
   // Register User
   const register = async (formData) => {
     const headers = configureHeaders(localStorage.token);
-    // if (localStorage.token) {
-    //   configureHeaders(localStorage.token);
-    // }
 
+    // Form data is username and password
     try {
       const res = await fetch('api/users', {
         method: 'POST',
@@ -73,8 +67,6 @@ const AuthState = (props) => {
 
       // If response is false, throw error with message from auth middleware
       if (!res.ok) throw data.msg;
-
-      // const res = await axios.post('api/users', formData, config);
 
       dispatch({
         type: REGISTER_SUCCESS,
@@ -92,35 +84,44 @@ const AuthState = (props) => {
   };
 
   // Login User
-  const loginUser = () => {
-    loadUser();
-    dispatch({
-      type: LOGIN_SUCCESS,
-    });
-  };
-  // const loginUser = async (formData) => {
-  //   const config = {
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //   };
-
-  //   try {
-  //     const res = await axios.post('api/auth', formData, config);
-
-  //     dispatch({
-  //       type: LOGIN_SUCCESS,
-  //       payload: res.data,
-  //     });
-
-  //     loadUser();
-  //   } catch (err) {
-  //     dispatch({
-  //       type: LOGIN_FAIL,
-  //       payload: err.response.data.msg,
-  //     });
-  //   }
+  // const loginUser = () => {
+  //   loadUser();
+  //   dispatch({
+  //     type: LOGIN_SUCCESS,
+  //   });
   // };
+  const loginUser = async (formData) => {
+    const headers = configureHeaders(localStorage.token);
+
+    try {
+      // const res = await axios.post('api/auth', formData, config);
+
+      const res = await fetch('api/auth', {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      // If response is false, throw error with message from auth middleware
+      if (!res.ok) throw data.msg;
+
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: data,
+      });
+
+      loadUser();
+    } catch (err) {
+      console.log(err);
+
+      dispatch({
+        type: LOGIN_FAIL,
+        payload: err,
+      });
+    }
+  };
 
   // Logout
   const logout = () => {

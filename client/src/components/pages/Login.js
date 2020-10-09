@@ -12,7 +12,7 @@ const Login = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    loginUser();
+    loginUser({ username, password });
 
     history.push('/dashboard');
   };
@@ -29,6 +29,7 @@ const Login = () => {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 className='validate'
+                required
               />
               <label htmlFor='username'>Username</label>
             </div>
@@ -41,6 +42,7 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className='validate'
+                required
               />
               <label htmlFor='password'>Password</label>
             </div>
