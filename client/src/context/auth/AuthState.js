@@ -26,7 +26,8 @@ const AuthState = (props) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
   // Load User
-  const loadUser = async () => {
+  // Set logError to false if you do not want error message on failed loadUser call (for home page component)
+  const loadUser = async (logError = true) => {
     const headers = configureHeaders(localStorage.token);
 
     try {
@@ -46,7 +47,7 @@ const AuthState = (props) => {
     } catch (err) {
       dispatch({
         type: AUTH_ERROR,
-        payload: err,
+        payload: logError ? err : '',
       });
     }
   };

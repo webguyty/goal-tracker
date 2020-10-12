@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import M from 'materialize-css/dist/js/materialize.min.js';
 import AuthContext from '../../context/auth/authContext';
 
@@ -40,7 +40,7 @@ const Register = () => {
     <div className='register__page'>
       <div className='row'>
         <div className='col s12'>
-          <h1 className='center-align'>Create an account</h1>
+          <h2 className='center-align'>Register</h2>
           <form onSubmit={onSubmit} className='col s12 m8 offset-m2'>
             <div className='row'>
               <div className='input-field col s12'>
@@ -91,6 +91,14 @@ const Register = () => {
               </button>
             </div>
           </form>
+
+          <div className='row'>
+            <div className='col s12 m8 offset-m2 center-align'>
+              <p>
+                Already have an account? <Link to='/login'>Login</Link>
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

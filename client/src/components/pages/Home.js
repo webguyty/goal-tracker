@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect, Link } from 'react-router-dom';
 import Preloader from '../layout/Preloader';
 
 import AuthContext from '../../context/auth/authContext';
@@ -9,14 +9,11 @@ const Home = () => {
   const { isAuthenticated, loadUser, loading, clearErrors } = authContext;
 
   useEffect(() => {
-    loadUser();
+    // Load user to see if user should be redirected to dashboard
+    // Set to false to not log error of not being logged in
+    loadUser(false);
     // eslint-disable-next-line
   }, []);
-
-  useEffect(() => {
-    if (!loading) clearErrors();
-    // clearErrors();
-  }, [loading, clearErrors]);
 
   if (isAuthenticated) {
     return (
@@ -25,6 +22,7 @@ const Home = () => {
       </Route>
     );
   }
+
   if (loading) {
     return <Preloader></Preloader>;
   }
@@ -34,6 +32,11 @@ const Home = () => {
       <div className='row'>
         <div className='col sm12'>
           <h1>Welcome to Goal Tracker!</h1>
+          <p>This is the public homepage</p>
+          <p>
+            If you are logged in you will be redirected to the{' '}
+            <Link to='/dashboard'>dashboard</Link>
+          </p>
         </div>
       </div>
     </div>

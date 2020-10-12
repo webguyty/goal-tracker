@@ -4,9 +4,9 @@ const ErrorMsg = ({ msg }) => {
   return (
     <div className='row'>
       <div className='col s12'>
-        <p className='red-text center-align'>
+        <h4 className='red-text center-align'>
           <strong>{msg}</strong>
-        </p>
+        </h4>
       </div>
     </div>
   );
