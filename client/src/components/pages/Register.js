@@ -1,11 +1,12 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useHistory, Link } from 'react-router-dom';
+import ErrorMsg from '../../components/auth/ErrorMsg';
 import M from 'materialize-css/dist/js/materialize.min.js';
 import AuthContext from '../../context/auth/authContext';
 
 const Register = () => {
   const authContext = useContext(AuthContext);
-  const { register, isAuthenticated } = authContext;
+  const { register, isAuthenticated, error, addErrors } = authContext;
   const [user, setUser] = useState({
     username: '',
     password: '',
@@ -26,13 +27,19 @@ const Register = () => {
     e.preventDefault();
 
     if (user.password !== user.password2) {
-      M.toast({ html: 'Passwords do not match', classes: 'red' });
+      addErrors('Passwords do not match');
     } else {
+      // const registerStatus = register({
+      //   username: user.username,
+      //   password: user.password,
+      // });
       register({
         username: user.username,
         password: user.password,
       });
-      M.toast({ html: 'Thank you for creating an account!' });
+
+      // if (registerStatus)
+      //   M.toast({ html: 'Thank you for creating an account!' });
     }
   };
 
@@ -40,6 +47,8 @@ const Register = () => {
     <div className='register__page'>
       <div className='row'>
         <div className='col s12'>
+          {/* Show errors if there are any */}
+          {error && <ErrorMsg msg={error} />}
           <h2 className='center-align'>Register</h2>
           <form onSubmit={onSubmit} className='col s12 m8 offset-m2'>
             <div className='row'>

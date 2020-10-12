@@ -6,7 +6,7 @@ import AuthContext from '../../context/auth/authContext';
 
 const Home = () => {
   const authContext = useContext(AuthContext);
-  const { isAuthenticated, loadUser, loading, clearErrors } = authContext;
+  const { isAuthenticated, loadUser, loading } = authContext;
 
   useEffect(() => {
     // Load user to see if user should be redirected to dashboard

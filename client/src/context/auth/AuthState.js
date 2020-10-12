@@ -65,6 +65,7 @@ const AuthState = (props) => {
       });
 
       const data = await res.json();
+      console.log(data);
 
       // If response is false, throw error with message from auth middleware
       if (!res.ok) throw data.msg;
@@ -73,8 +74,9 @@ const AuthState = (props) => {
         type: REGISTER_SUCCESS,
         payload: data,
       });
-
+      console.log('success');
       loadUser();
+      // return true;
     } catch (err) {
       console.error(err);
       dispatch({
