@@ -83,13 +83,6 @@ const AuthState = (props) => {
     }
   };
 
-  // Login User
-  // const loginUser = () => {
-  //   loadUser();
-  //   dispatch({
-  //     type: LOGIN_SUCCESS,
-  //   });
-  // };
   const loginUser = async (formData) => {
     const headers = configureHeaders(localStorage.token);
 
@@ -127,7 +120,15 @@ const AuthState = (props) => {
   };
 
   // Clear Errors
-  const clearErrors = (params) => {
+  const addErrors = (msg) => {
+    dispatch({
+      type: AUTH_ERROR,
+      payload: msg,
+    });
+  };
+
+  // Clear Errors
+  const clearErrors = () => {
     dispatch({
       type: CLEAR_ERRORS,
     });
@@ -145,6 +146,7 @@ const AuthState = (props) => {
         loadUser,
         loginUser,
         logout,
+        addErrors,
         clearErrors,
       }}
     >

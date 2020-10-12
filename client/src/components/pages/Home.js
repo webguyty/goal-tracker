@@ -1,23 +1,33 @@
 import React, { useEffect, useContext } from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import Preloader from '../layout/Preloader';
+
 import AuthContext from '../../context/auth/authContext';
 
 const Home = () => {
   const authContext = useContext(AuthContext);
-  const { isAuthenticated, loadUser } = authContext;
+  const { isAuthenticated, loadUser, loading, clearErrors } = authContext;
 
   useEffect(() => {
     loadUser();
     // eslint-disable-next-line
   }, []);
 
-  // if (isAuthenticated) {
-  //   return (
-  //     <Route>
-  //       <Redirect to='/dashboard' />
-  //     </Route>
-  //   );
-  // }
+  useEffect(() => {
+    if (!loading) clearErrors();
+    // clearErrors();
+  }, [loading, clearErrors]);
+
+  if (isAuthenticated) {
+    return (
+      <Route>
+        <Redirect to='/dashboard' />
+      </Route>
+    );
+  }
+  if (loading) {
+    return <Preloader></Preloader>;
+  }
 
   return (
     <div className='home__page'>

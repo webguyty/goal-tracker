@@ -1,11 +1,11 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import M from 'materialize-css/dist/js/materialize.min.js';
 import AuthContext from '../../context/auth/authContext';
 
 const Register = () => {
   const authContext = useContext(AuthContext);
-  const { register } = authContext;
+  const { register, isAuthenticated } = authContext;
   const [user, setUser] = useState({
     username: '',
     password: '',
@@ -13,6 +13,10 @@ const Register = () => {
   });
 
   const history = useHistory();
+
+  useEffect(() => {
+    if (isAuthenticated) history.push('/dashboard');
+  }, [isAuthenticated, history]);
 
   const onChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -29,9 +33,7 @@ const Register = () => {
         password: user.password,
       });
       M.toast({ html: 'Thank you for creating an account!' });
-      history.push('/dashboard');
     }
-    // console.log(user);
   };
 
   return (
