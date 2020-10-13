@@ -4,7 +4,7 @@ import AuthContext from '../../context/auth/authContext';
 
 const Dashboard = () => {
   const authContext = useContext(AuthContext);
-  const { isAuthenticated, loadUser, loading } = authContext;
+  const { loadUser, loading } = authContext;
 
   useEffect(() => {
     loadUser();
@@ -18,7 +18,8 @@ const Dashboard = () => {
   return (
     <div className='dashboard__page'>
       <h1>Welcome to your dashboard</h1>
-      <h2>Log your dreams today</h2>
+      <h3>This is a private dashboard for registered users.</h3>
+      <p>Implement what you wish here.</p>
     </div>
   );
 };

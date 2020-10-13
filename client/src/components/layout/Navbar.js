@@ -25,7 +25,7 @@ const Navbar = () => {
         <Link to='/register'>Register</Link>
       </li>
       <li>
-        <a href='/#'>How to use</a>
+        <a href='/about'>About</a>
       </li>
     </Fragment>
   );

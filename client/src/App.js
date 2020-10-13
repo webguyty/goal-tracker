@@ -6,6 +6,7 @@ import Home from './components/pages/Home';
 import Dashboard from './components/pages/Dashboard';
 import Login from './components/pages/Login';
 import Register from './components/pages/Register';
+import About from './components/pages/About';
 import PrivateRoute from './components/routing/PrivateRoute';
 
 import 'materialize-css/dist/css/materialize.min.css';
@@ -31,6 +32,7 @@ const App = () => {
               {/* <Route exact path='/dashboard' to component={Dashboard}></Route> */}
               <Route exact path='/login' component={Login} />
               <Route exact path='/register' component={Register} />
+              <Route exact path='/about' component={About} />
             </Switch>
           </div>
         </Fragment>

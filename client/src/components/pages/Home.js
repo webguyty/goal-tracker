@@ -34,7 +34,7 @@ const Home = () => {
           <h1>Welcome to Goal Tracker!</h1>
           <p>This is the public homepage</p>
           <p>
-            If you are logged in you will be redirected to the{' '}
+            If you are logged in you will be redirected to the private{' '}
             <Link to='/dashboard'>dashboard</Link>
           </p>
         </div>
