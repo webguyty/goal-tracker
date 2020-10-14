@@ -1,11 +1,22 @@
 import React, { useReducer } from 'react';
 import GoalsContext from './goalsContext';
 import goalsReducer from './goalsReducer';
-import {} from '../types';
+import configureHeaders from '../../utils/configureHeaders';
+import {
+  GET_CONTACTS,
+  CONTACT_ERROR,
+  ADD_CONTACT,
+  UPDATE_CONTACT,
+  CLEAR_CONTACTS,
+  SET_CURRENT,
+  DELETE_CONTACT,
+  CLEAR_FILTER,
+  FILTER_CONTACTS,
+} from '../types';
 
 const GoalsState = (props) => {
   const initialState = {
-    // contacts: null,
+    goals: null,
     // current: null,
     // filtered: null,
     // error: null,
@@ -30,23 +41,23 @@ const GoalsState = (props) => {
   // };
 
   // // Add Contact
-  // const addContact = async (contact) => {
-  //   const config = {
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //   };
+  const addContact = async (contact) => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
 
-  //   try {
-  //     const res = await axios.post('/api/contacts', contact, config);
-  //     dispatch({
-  //       type: ADD_CONTACT,
-  //       payload: res.data,
-  //     });
-  //   } catch (error) {
-  //     dispatch({ type: CONTACT_ERROR, payload: error.response.msg });
-  //   }
-  // };
+    try {
+      const res = await axios.post('/api/contacts', contact, config);
+      dispatch({
+        type: ADD_GOAL,
+        payload: res.data,
+      });
+    } catch (error) {
+      dispatch({ type: GOAL_ERROR, payload: error.response.msg });
+    }
+  };
 
   // // Update Contact
   // const updateContact = async (contact) => {
@@ -120,25 +131,25 @@ const GoalsState = (props) => {
   // };
 
   // return (
-  //   <ContactContext.Provider
-  //     value={{
-  //       contacts: state.contacts,
-  //       current: state.current,
-  //       filtered: state.filtered,
-  //       error: state.error,
-  //       addContact,
-  //       updateContact,
-  //       deleteContact,
-  //       setCurrent,
-  //       clearCurrent,
-  //       filterContacts,
-  //       clearFilter,
-  //       getContacts,
-  //       clearContacts,
-  //     }}
-  //   >
-  //     {props.children}
-  //   </ContactContext.Provider>
+  <GoalsContext.Provider
+    value={{
+      goals: state.goals,
+      //       current: state.current,
+      //       filtered: state.filtered,
+      //       error: state.error,
+      addGoal,
+      //       updateGoal,
+      //       deleteGoal,
+      //       setCurrent,
+      //       clearCurrent,
+      //       filterGoals,
+      //       clearFilter,
+      //       getGoals,
+      //       clearGoals,
+    }}
+  >
+    {props.children}
+  </GoalsContext.Provider>;
   // );
 };
 

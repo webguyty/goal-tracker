@@ -2,38 +2,38 @@ import {} from '../types';
 
 export default (state, action) => {
   // switch (action.type) {
-  //   case GET_CONTACTS:
+  //   case GET_GOALS:
   //     return {
   //       ...state,
-  //       contacts: action.payload,
+  //       goals: action.payload,
   //       loading: false,
   //     };
-  //   case ADD_CONTACT:
+  //   case ADD_GOAL:
   //     return {
   //       ...state,
-  //       contacts: [action.payload, ...state.contacts],
+  //       goals: [action.payload, ...state.goals],
   //       loading: false,
   //     };
-  //   case UPDATE_CONTACT:
+  //   case UPDATE_GOAL:
   //     return {
   //       ...state,
-  //       contacts: state.contacts.map((contact) =>
-  //         contact._id === action.payload._id ? action.payload : contact
+  //       goals: state.goals.map((goal) =>
+  //         goal._id === action.payload._id ? action.payload : goal
   //       ),
   //       loading: false,
   //     };
-  //   case DELETE_CONTACT:
+  //   case DELETE_GOAL:
   //     return {
   //       ...state,
-  //       contacts: state.contacts.filter(
-  //         (contact) => contact._id !== action.payload
+  //       goals: state.goals.filter(
+  //         (goal) => goal._id !== action.payload
   //       ),
   //       loading: false,
   //     };
-  //   case CLEAR_CONTACTS:
+  //   case CLEAR_GOALS:
   //     return {
   //       ...state,
-  //       contacts: null,
+  //       goals: null,
   //       filtered: null,
   //       error: null,
   //       current: null,
@@ -48,12 +48,12 @@ export default (state, action) => {
   //       ...state,
   //       current: null,
   //     };
-  //   case FILTER_CONTACTS:
+  //   case FILTER_GOALS:
   //     return {
   //       ...state,
-  //       filtered: state.contacts.filter((contact) => {
+  //       filtered: state.goals.filter((goal) => {
   //         const regex = new RegExp(`${action.payload}`, 'gi');
-  //         return contact.name.match(regex) || contact.email.match(regex);
+  //         return goal.name.match(regex) || goal.email.match(regex);
   //       }),
   //     };
   //   case CLEAR_FILTER:
@@ -61,7 +61,7 @@ export default (state, action) => {
   //       ...state,
   //       filtered: null,
   //     };
-  //   case CONTACT_ERROR:
+  //   case GOAL_ERROR:
   //     return {
   //       ...state,
   //       error: action.payload,
