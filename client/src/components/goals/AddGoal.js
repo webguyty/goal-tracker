@@ -8,18 +8,13 @@ const AddGoal = () => {
     e.preventDefault();
     const goalsSplit = goals.split(/\r?\n/);
 
-    // setGoalsArr(goalsSplit.forEach((g) => goalsArr.push(g)));
-    // console.log(goals);
+    // Clear array and add to it
+    setGoalsArr([...goalsSplit]);
 
-    // setCount(currentCount => currentCount - 1)
-    // setGoalsArr((currentArr) => [...currentArr, ...goalsSplit]);
-    setGoalsArr((current) => [...current, ...goalsSplit]);
-    // setGoalsArr(['asdf', 'fdas']);
-
-    // const shit = 'shit';
-
-    // setGoalsArr(goalsArr.push(shit));
-    // console.log(goalsArr);
+    // Current array state and adding to it
+    // setGoalsArr([...goalsArr, ...goalsSplit]);
+    // or
+    // setGoalsArr((current) => [...current, ...goalsSplit]);
   };
   useEffect(() => {
     console.log(goalsArr);
@@ -45,6 +40,7 @@ const AddGoal = () => {
           </button>
         </div>
       </form>
+      {/* <p onClick={() => setGoalsArr([])}>clear</p> */}
     </div>
   );
 };
