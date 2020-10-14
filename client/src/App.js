@@ -25,16 +25,14 @@ const App = () => {
       <Router>
         <Fragment>
           <Navbar />
-          <div className='container'>
-            <Switch>
-              <Route exact path='/' to component={Home} />
-              <PrivateRoute exact path='/dashboard' component={Dashboard} />
-              {/* <Route exact path='/dashboard' to component={Dashboard}></Route> */}
-              <Route exact path='/login' component={Login} />
-              <Route exact path='/register' component={Register} />
-              <Route exact path='/about' component={About} />
-            </Switch>
-          </div>
+          <Switch>
+            <Route exact path='/' to component={Home} />
+            <PrivateRoute exact path='/dashboard' component={Dashboard} />
+            {/* <Route exact path='/dashboard' to component={Dashboard}></Route> */}
+            <Route exact path='/login' component={Login} />
+            <Route exact path='/register' component={Register} />
+            <Route exact path='/about' component={About} />
+          </Switch>
         </Fragment>
       </Router>
     </AuthState>

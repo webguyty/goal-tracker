@@ -17,9 +17,15 @@ const Dashboard = () => {
 
   return (
     <div className='dashboard__page'>
-      <h1>Welcome to your dashboard</h1>
-      <h3>This is a private dashboard for registered users.</h3>
-      <p>Implement what you wish here.</p>
+      <div className='row'>
+        <div className='col s4'>
+          <p>Goals List</p>
+        </div>
+        <div className='col s8'>
+          <p>Add new goal</p>
+        </div>
+      </div>
+      {/* Main row */}
     </div>
   );
 };
