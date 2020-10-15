@@ -1,21 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import AuthContext from '../../context/auth/authContext';
+import GoalsContext from '../../context/auth/GoalsContext';
 
 const AddGoal = () => {
-  const [goals, setGoals] = useState('');
+  const authContext = useContext(AuthContext);
+  const goalsContext = useContext(GoalsContext);
+
+  const { user } = authContext;
+  const { addGoal } = goalsContext;
+
+  const [goalsStr, setGoalsStr] = useState('');
   const [goalsArr, setGoalsArr] = useState([]);
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const goalsSplit = goals.split(/\r?\n/);
-
-    // Clear array and add to it
+    const goalsSplit = goalsStr.split(/\r?\n/);
     setGoalsArr([...goalsSplit]);
 
-    // Current array state and adding to it
-    // setGoalsArr([...goalsArr, ...goalsSplit]);
-    // or
-    // setGoalsArr((current) => [...current, ...goalsSplit]);
+    const goal = {
+      userID: user._id,
+      goalsStr,
+      goalsArr,
+    };
   };
+
   useEffect(() => {
     console.log(goalsArr);
   }, [goalsArr]);
@@ -30,7 +38,7 @@ const AddGoal = () => {
           id='addGoal-goalInput'
           className='addGoal__goalInput'
           placeholder='This is some text'
-          value={goals}
+          value={goalsStr}
           onChange={(e) => setGoals(e.target.value)}
         />
         <div className='row center-align'>
@@ -40,7 +48,6 @@ const AddGoal = () => {
           </button>
         </div>
       </form>
-      {/* <p onClick={() => setGoalsArr([])}>clear</p> */}
     </div>
   );
 };

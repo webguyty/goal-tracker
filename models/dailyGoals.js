@@ -1,11 +1,15 @@
 const mongoose = require('mongoose');
 
 const DailyGoalsSchema = mongoose.Schema({
-  user: {
+  userID: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'users',
   },
-  goals: {
+  goalsStr: {
+    type: String,
+    required: true,
+  },
+  goalsArr: {
     type: Array,
     required: true,
   },

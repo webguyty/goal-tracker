@@ -3,15 +3,15 @@ import GoalsContext from './goalsContext';
 import goalsReducer from './goalsReducer';
 import configureHeaders from '../../utils/configureHeaders';
 import {
-  GET_CONTACTS,
-  CONTACT_ERROR,
-  ADD_CONTACT,
-  UPDATE_CONTACT,
-  CLEAR_CONTACTS,
+  GET_GOALS,
+  GOAL_ERROR,
+  ADD_GOAL,
+  UPDATE_GOAL,
+  CLEAR_GOALS,
   SET_CURRENT,
-  DELETE_CONTACT,
+  DELETE_GOAL,
   CLEAR_FILTER,
-  FILTER_CONTACTS,
+  FILTER_GOALS,
 } from '../types';
 
 const GoalsState = (props) => {
@@ -41,21 +41,29 @@ const GoalsState = (props) => {
   // };
 
   // // Add Contact
-  const addContact = async (contact) => {
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
+  const addGoal = async (goal) => {
+    const headers = configureHeaders(localStorage.token);
 
     try {
-      const res = await axios.post('/api/contacts', contact, config);
+      const res = await fetch('api/dailyGoals', {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify(goal),
+      });
+
+      const data = await res.json();
+
+      // If response is false, throw error with message from auth middleware
+      if (!res.ok) throw data.msg;
+
+      console.log('Success');
+      // const res = await axios.post('/api/contacts', contact, config);
       dispatch({
         type: ADD_GOAL,
-        payload: res.data,
+        payload: data,
       });
-    } catch (error) {
-      dispatch({ type: GOAL_ERROR, payload: error.response.msg });
+    } catch (err) {
+      dispatch({ type: GOAL_ERROR, payload: err });
     }
   };
 
@@ -130,27 +138,27 @@ const GoalsState = (props) => {
   //   });
   // };
 
-  // return (
-  <GoalsContext.Provider
-    value={{
-      goals: state.goals,
-      //       current: state.current,
-      //       filtered: state.filtered,
-      //       error: state.error,
-      addGoal,
-      //       updateGoal,
-      //       deleteGoal,
-      //       setCurrent,
-      //       clearCurrent,
-      //       filterGoals,
-      //       clearFilter,
-      //       getGoals,
-      //       clearGoals,
-    }}
-  >
-    {props.children}
-  </GoalsContext.Provider>;
-  // );
+  return (
+    <GoalsContext.Provider
+      value={{
+        goals: state.goals,
+        //       current: state.current,
+        //       filtered: state.filtered,
+        //       error: state.error,
+        addGoal,
+        //       updateGoal,
+        //       deleteGoal,
+        //       setCurrent,
+        //       clearCurrent,
+        //       filterGoals,
+        //       clearFilter,
+        //       getGoals,
+        //       clearGoals,
+      }}
+    >
+      {props.children}
+    </GoalsContext.Provider>
+  );
 };
 
 export default GoalsState;

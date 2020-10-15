@@ -65,7 +65,6 @@ const AuthState = (props) => {
       });
 
       const data = await res.json();
-      console.log(data);
 
       // If response is false, throw error with message from auth middleware
       if (!res.ok) throw data.msg;

@@ -14,6 +14,7 @@ import M from 'materialize-css/dist/js/materialize.min.js';
 import './main.scss';
 
 import AuthState from './context/auth/AuthState';
+import GoalsState from './context/goals/GoalsState';
 
 const App = () => {
   useEffect(() => {
@@ -22,19 +23,21 @@ const App = () => {
 
   return (
     <AuthState>
-      <Router>
-        <Fragment>
-          <Navbar />
-          <Switch>
-            <Route exact path='/' to component={Home} />
-            <PrivateRoute exact path='/dashboard' component={Dashboard} />
-            {/* <Route exact path='/dashboard' to component={Dashboard}></Route> */}
-            <Route exact path='/login' component={Login} />
-            <Route exact path='/register' component={Register} />
-            <Route exact path='/about' component={About} />
-          </Switch>
-        </Fragment>
-      </Router>
+      <GoalsState>
+        <Router>
+          <Fragment>
+            <Navbar />
+            <Switch>
+              <Route exact path='/' to component={Home} />
+              <PrivateRoute exact path='/dashboard' component={Dashboard} />
+              {/* <Route exact path='/dashboard' to component={Dashboard}></Route> */}
+              <Route exact path='/login' component={Login} />
+              <Route exact path='/register' component={Register} />
+              <Route exact path='/about' component={About} />
+            </Switch>
+          </Fragment>
+        </Router>
+      </GoalsState>
     </AuthState>
   );
 };
