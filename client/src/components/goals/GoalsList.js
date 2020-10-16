@@ -23,9 +23,9 @@ const GoalsList = () => {
   return (
     <div className='goalsList'>
       <h4 className='center-align'>Goals List</h4>
-      <ul className='collection'>
+      <ul className='goalsList__ul'>
         {goals.map((goal) => (
-          <GoalsListItem goal={goal.goalsStr} key={goal._id} />
+          <GoalsListItem goal={goal} key={goal._id} />
         ))}
       </ul>
     </div>
