@@ -6,39 +6,46 @@ import {
   GET_GOALS,
   GOAL_ERROR,
   ADD_GOAL,
-  UPDATE_GOAL,
-  CLEAR_GOALS,
-  SET_CURRENT,
-  DELETE_GOAL,
-  CLEAR_FILTER,
-  FILTER_GOALS,
+  // UPDATE_GOAL,
+  // CLEAR_GOALS,
+  // SET_CURRENT,
+  // DELETE_GOAL,
+  // CLEAR_FILTER,
+  // FILTER_GOALS,
 } from '../types';
 
 const GoalsState = (props) => {
   const initialState = {
-    goals: null,
+    goals: [],
     // current: null,
     // filtered: null,
-    // error: null,
+    error: null,
   };
 
   const [state, dispatch] = useReducer(goalsReducer, initialState);
 
-  // // Get Contacts
-  // const getContacts = async () => {
-  //   try {
-  //     const res = await axios.get('/api/contacts');
-  //     dispatch({
-  //       type: GET_CONTACTS,
-  //       payload: res.data,
-  //     });
-  //   } catch (error) {
-  //     dispatch({
-  //       type: CONTACT_ERROR,
-  //       payload: error.response.msg,
-  //     });
-  //   }
-  // };
+  // // Get Goals
+  const getGoals = async () => {
+    const headers = configureHeaders(localStorage.token);
+    try {
+      const res = await fetch('api/dailyGoals', {
+        method: 'GET',
+        headers: headers,
+        // body: JSON.stringify(goal),
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw data.msg;
+      console.log(data);
+      dispatch({
+        type: GET_GOALS,
+      });
+    } catch (err) {
+      console.error(err);
+      console.log('fail');
+      dispatch({ type: GOAL_ERROR, payload: err });
+    }
+  };
 
   // // Add Contact
   const addGoal = async (goal) => {
@@ -55,8 +62,7 @@ const GoalsState = (props) => {
 
       // If response is false, throw error with message from auth middleware
       if (!res.ok) throw data.msg;
-
-      console.log('Success');
+      console.log(data);
       // const res = await axios.post('/api/contacts', contact, config);
       dispatch({
         type: ADD_GOAL,
@@ -144,7 +150,7 @@ const GoalsState = (props) => {
         goals: state.goals,
         //       current: state.current,
         //       filtered: state.filtered,
-        //       error: state.error,
+        error: state.error,
         addGoal,
         //       updateGoal,
         //       deleteGoal,
@@ -152,7 +158,7 @@ const GoalsState = (props) => {
         //       clearCurrent,
         //       filterGoals,
         //       clearFilter,
-        //       getGoals,
+        getGoals,
         //       clearGoals,
       }}
     >
