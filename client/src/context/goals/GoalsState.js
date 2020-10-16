@@ -8,7 +8,8 @@ import {
   ADD_GOAL,
   // UPDATE_GOAL,
   // CLEAR_GOALS,
-  // SET_CURRENT,
+  SET_CURRENT,
+  CLEAR_CURRENT,
   // DELETE_GOAL,
   // CLEAR_FILTER,
   // FILTER_GOALS,
@@ -17,7 +18,7 @@ import {
 const GoalsState = (props) => {
   const initialState = {
     goals: [],
-    // current: null,
+    current: null,
     // filtered: null,
     error: null,
   };
@@ -115,19 +116,19 @@ const GoalsState = (props) => {
   // };
 
   // // Set Current Contact
-  // const setCurrent = (contact) => {
-  //   dispatch({
-  //     type: SET_CURRENT,
-  //     payload: contact,
-  //   });
-  // };
+  const setCurrent = (contact) => {
+    //   dispatch({
+    //     type: SET_CURRENT,
+    //     payload: contact,
+    //   });
+  };
 
   // // Clear Current Contact
-  // const clearCurrent = () => {
-  //   dispatch({
-  //     type: CLEAR_CURRENT,
-  //   });
-  // };
+  const clearCurrent = () => {
+    //   dispatch({
+    //     type: CLEAR_CURRENT,
+    //   });
+  };
 
   // // Filter Contacts
   // const filterContacts = (text) => {
@@ -148,14 +149,14 @@ const GoalsState = (props) => {
     <GoalsContext.Provider
       value={{
         goals: state.goals,
-        //       current: state.current,
+        current: state.current,
         //       filtered: state.filtered,
         error: state.error,
         addGoal,
         //       updateGoal,
         //       deleteGoal,
-        //       setCurrent,
-        //       clearCurrent,
+        setCurrent,
+        clearCurrent,
         //       filterGoals,
         //       clearFilter,
         getGoals,

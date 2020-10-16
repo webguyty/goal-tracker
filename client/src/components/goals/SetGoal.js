@@ -2,18 +2,17 @@ import React, { useState, useEffect, useContext } from 'react';
 import AuthContext from '../../context/auth/authContext';
 import GoalsContext from '../../context/goals/goalsContext';
 
-const AddGoal = () => {
+const SetGoal = () => {
   const authContext = useContext(AuthContext);
   const goalsContext = useContext(GoalsContext);
 
   const { user } = authContext;
-  const { addGoal, getGoals } = goalsContext;
+  const { addGoal } = goalsContext;
 
   const [goalsStr, setGoalsStr] = useState('');
   const [goalsArr, setGoalsArr] = useState([]);
-  const [goal, setGoal] = useState({});
 
-  const onSubmit = (e) => {
+  const onSave = (e) => {
     e.preventDefault();
     // Split string into array at new line
     // Filter out any blank line / string
@@ -40,7 +39,7 @@ const AddGoal = () => {
   return (
     <div className='addGoal'>
       <h3>We are adding some goals</h3>
-      <form action='addGoal__form' onSubmit={onSubmit}>
+      <form action='addGoal__form' onSubmit={onSave}>
         <label htmlFor='w3review'>Add what you want in life</label>
 
         <textarea
@@ -52,7 +51,7 @@ const AddGoal = () => {
         />
         <div className='row center-align'>
           <button className='btn waves-effect waves-light' type='submit'>
-            Submit
+            Save
             <i className='material-icons right'>send</i>
           </button>
         </div>
@@ -61,4 +60,4 @@ const AddGoal = () => {
   );
 };
 
-export default AddGoal;
+export default SetGoal;

@@ -1,4 +1,10 @@
-import { ADD_GOAL, GET_GOALS, GOAL_ERROR } from '../types';
+import {
+  ADD_GOAL,
+  GET_GOALS,
+  GOAL_ERROR,
+  SET_CURRENT,
+  CLEAR_CURRENT,
+} from '../types';
 
 export default (state, action) => {
   switch (action.type) {
@@ -13,6 +19,7 @@ export default (state, action) => {
         ...state,
         goals: [action.payload, ...state.goals],
         loading: false,
+        current: action.payload,
       };
     //   case UPDATE_GOAL:
     //     return {
@@ -38,16 +45,7 @@ export default (state, action) => {
     //       error: null,
     //       current: null,
     //     };
-    //   case SET_CURRENT:
-    //     return {
-    //       ...state,
-    //       current: action.payload,
-    //     };
-    //   case CLEAR_CURRENT:
-    //     return {
-    //       ...state,
-    //       current: null,
-    //     };
+    //   ?
     //   case FILTER_GOALS:
     //     return {
     //       ...state,
