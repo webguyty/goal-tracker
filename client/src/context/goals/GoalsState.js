@@ -36,9 +36,9 @@ const GoalsState = (props) => {
 
       const data = await res.json();
       if (!res.ok) throw data.msg;
-      console.log(data);
       dispatch({
         type: GET_GOALS,
+        payload: data,
       });
     } catch (err) {
       console.error(err);

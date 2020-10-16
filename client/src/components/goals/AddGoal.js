@@ -57,13 +57,6 @@ const AddGoal = () => {
           </button>
         </div>
       </form>
-      <p
-        onClick={() => {
-          getGoals();
-        }}
-      >
-        click
-      </p>
     </div>
   );
 };
