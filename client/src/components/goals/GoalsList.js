@@ -1,4 +1,6 @@
 import React, { useEffect, useContext } from 'react';
+
+import GoalsListItem from './GoalsListItem';
 import AuthContext from '../../context/auth/authContext';
 import GoalsContext from '../../context/goals/goalsContext';
 
@@ -13,15 +15,19 @@ const GoalsList = () => {
     // eslint-disable-next-line
   }, []);
 
-  // useEffect(() => {
-  //   console.log(goals);
-
-  //   // eslint-disable-next-line
-  // }, [goals]);
+  useEffect(() => {
+    // console.log(goals);
+    // eslint-disable-next-line
+  }, [goals]);
 
   return (
     <div className='goalsList'>
-      <p>Goals List</p>
+      <h4 className='center-align'>Goals List</h4>
+      <ul className='collection'>
+        {goals.map((goal) => (
+          <GoalsListItem goal={goal.goalsStr} key={goal._id} />
+        ))}
+      </ul>
     </div>
   );
 };
