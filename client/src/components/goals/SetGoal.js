@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import Moment from 'react-moment';
 import AuthContext from '../../context/auth/authContext';
 import GoalsContext from '../../context/goals/goalsContext';
 
@@ -7,10 +8,11 @@ const SetGoal = () => {
   const goalsContext = useContext(GoalsContext);
 
   const { user } = authContext;
-  const { addGoal } = goalsContext;
+  const { addGoal, current } = goalsContext;
 
   const [goalsStr, setGoalsStr] = useState('');
   const [goalsArr, setGoalsArr] = useState([]);
+  const [date, setDate] = useState(new Date());
 
   const onSave = (e) => {
     e.preventDefault();
@@ -33,18 +35,25 @@ const SetGoal = () => {
   };
 
   useEffect(() => {
-    // console.log(goalsArr);
-  }, [goalsArr]);
+    if (current) {
+      setDate(current.date);
+      setGoalsStr(current.goalsStr);
+      console.log('fired');
+    }
+  }, [current]);
 
   return (
-    <div className='addGoal'>
+    <div className='setGoal'>
       <h3>We are adding some goals</h3>
-      <form action='addGoal__form' onSubmit={onSave}>
+      <p className='setGoal__date'>
+        <Moment format='MMM DD YYYY, h:mm a'>{date}</Moment>
+      </p>
+      <form action='setGoal__form' onSubmit={onSave}>
         <label htmlFor='w3review'>Add what you want in life</label>
 
         <textarea
-          id='addGoal-goalInput'
-          className='addGoal__goalInput'
+          id='setGoal-goalInput'
+          className='setGoal__goalInput'
           placeholder='This is some text'
           value={goalsStr}
           onChange={(e) => setGoalsStr(e.target.value)}

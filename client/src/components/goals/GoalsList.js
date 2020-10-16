@@ -15,11 +15,6 @@ const GoalsList = () => {
     // eslint-disable-next-line
   }, []);
 
-  useEffect(() => {
-    // console.log(goals);
-    // eslint-disable-next-line
-  }, [goals]);
-
   return (
     <div className='goalsList'>
       <h4 className='center-align'>Goals List</h4>

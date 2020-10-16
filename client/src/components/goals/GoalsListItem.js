@@ -1,15 +1,20 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
 import Moment from 'react-moment';
-import goalsContext from '../../context/goals/goalsContext';
+import GoalsContext from '../../context/goals/goalsContext';
 
 const GoalsListItem = ({ goal }) => {
+  const goalsContext = useContext(GoalsContext);
+  const { setCurrent } = goalsContext;
+
   const { goalsStr, date } = goal;
-  // Regex version which doesn't work in react
-  // const formatted = goal.replace(/\r?\n/g, '<br />');
+
+  const onClick = (g) => {
+    setCurrent(g);
+  };
 
   // Split string at new line
   return (
-    <div className='goalsList__item'>
+    <div className='goalsList__item' onClick={() => setCurrent(goal)}>
       <p className='goalsList__item__date'>
         <Moment format='MMM DD YYYY, h:mm a'>{date}</Moment>
       </p>

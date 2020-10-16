@@ -59,12 +59,17 @@ export default (state, action) => {
     //       ...state,
     //       filtered: null,
     //     };
+    case SET_CURRENT:
+      return {
+        ...state,
+        current: action.payload,
+      };
     case GOAL_ERROR:
       return {
         ...state,
         error: action.payload,
       };
-    //   default:
-    //     return state;
+    default:
+      return state;
   }
 };

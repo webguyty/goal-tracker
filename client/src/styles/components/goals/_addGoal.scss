@@ -1,5 +1,9 @@
-.addGoal {
+.setGoal {
   &__goalInput {
     height: 400px;
+  }
+
+  &__date {
+    margin: 0;
   }
 }
