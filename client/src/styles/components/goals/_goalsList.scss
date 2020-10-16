@@ -1,12 +1,22 @@
 .goalsList {
   &__BG {
     background-color: #eeeeee;
-    height: 1000px;
+    height: 90vh;
+    overflow-y: auto;
+  }
+
+  &__UL {
+    overflow-y: auto;
   }
 
   &__item {
     background-color: white;
     padding: 10px;
     margin-bottom: 5px;
+
+    &__date {
+      margin-top: 0px;
+      margin-bottom: 5px;
+    }
   }
 }
