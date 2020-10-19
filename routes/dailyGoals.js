@@ -34,8 +34,8 @@ router.post('/', auth, async (req, res) => {
   }
 });
 
-// @route		POST api/dailyGoals
-// @desc		Creates a daily goal list
+// @route		DELETE api/dailyGoals
+// @desc		Delete selected goal
 // @access	Private
 router.delete('/goal/:id', auth, async (req, res) => {
   try {
@@ -53,6 +53,41 @@ router.delete('/goal/:id', auth, async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ msg: 'Server Error' });
+  }
+});
+
+// @route		PUT api/contacts/:id
+// @desc		Update contact
+// @access 	Private
+router.put('/:id', auth, async (req, res) => {
+  const { goalsStr, goalsArr } = req.body.goal;
+
+  // Build contact object
+  const goalFields = {};
+
+  if (goalsStr) goalFields.goalsStr = goalsStr;
+  if (goalsArr) goalFields.goalsArr = goalsArr;
+
+  try {
+    const goal = await DailyGoals.findById(req.params.id);
+
+    if (!goal) return res.status(404).json({ msg: 'goal not found' });
+
+    // Make sure user owns goal
+    if (goal.user.toString() !== req.user.id) {
+      return res.status(401).json({ msg: 'Not authorized' });
+    }
+
+    goal = await goal.findByIdAndUpdate(
+      req.params.id,
+      { $set: goalFields },
+      { new: true }
+    );
+
+    res.json(goal);
+  } catch (error) {
+    console.error(err);
+    res.status(500).send('Server error');
   }
 });
 

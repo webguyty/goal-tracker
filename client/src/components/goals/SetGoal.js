@@ -9,12 +9,13 @@ const SetGoal = () => {
   const goalsContext = useContext(GoalsContext);
 
   const { user } = authContext;
-  const { addGoal, current, deleteGoal } = goalsContext;
+  const { addGoal, current, deleteGoal, updateGoal } = goalsContext;
 
   const [goalsStr, setGoalsStr] = useState('');
   const [goalsArr, setGoalsArr] = useState([]);
   const [date, setDate] = useState(new Date());
 
+  // Read any current goals selected
   // Pull in current daily goal. If daily goal is null save as new daily goal
   useEffect(() => {
     if (current) {
@@ -23,6 +24,7 @@ const SetGoal = () => {
     }
   }, [current]);
 
+  // Create new goal
   const onSave = (e) => {
     e.preventDefault();
     // Split string into array at new line
@@ -43,6 +45,24 @@ const SetGoal = () => {
     addGoal(goal);
   };
 
+  const onUpdate = (e, currentID) => {
+    e.preventDefault();
+    const goalsSplit = goalsStr
+      .split(/\r?\n/)
+      .filter((g) => g.match(/[a-z]|[A-Z]|[0-9]/g))
+      .map((g) => g.trim());
+
+    setGoalsArr([...goalsSplit]);
+
+    const goal = {
+      userID: user._id,
+      goalsStr,
+      goalsArr: goalsSplit,
+    };
+    updateGoal(goal, currentID);
+  };
+
+  // Remove Goal
   const onDelete = (id) => {
     deleteGoal(id);
     M.toast({ html: `Goal Deleted` });
@@ -54,7 +74,7 @@ const SetGoal = () => {
       <p className='setGoal__date'>
         <Moment format='MMM DD YYYY, h:mm a'>{date}</Moment>
       </p>
-      <form action='setGoal__form' onSubmit={onSave}>
+      <form className='setGoal__form'>
         <div className='setGoal__labelContainer'>
           <label htmlFor='setGoal-goalInput'>Add what you want in life</label>
           {current && (
@@ -77,7 +97,11 @@ const SetGoal = () => {
           onChange={(e) => setGoalsStr(e.target.value)}
         />
         <div className='row center-align'>
-          <button className='btn waves-effect waves-light' type='submit'>
+          <button
+            className='btn waves-effect waves-light'
+            type='submit'
+            onClick={!current ? onSave : (e) => onUpdate(e, current._id)}
+          >
             {!current ? 'Save' : 'Update'}
             <i className='material-icons right'>send</i>
           </button>

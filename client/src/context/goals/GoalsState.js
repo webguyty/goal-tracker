@@ -6,7 +6,7 @@ import {
   GET_GOALS,
   GOAL_ERROR,
   ADD_GOAL,
-  // UPDATE_GOAL,
+  UPDATE_GOAL,
   // CLEAR_GOALS,
   SET_CURRENT,
   CLEAR_CURRENT,
@@ -74,28 +74,41 @@ const GoalsState = (props) => {
     }
   };
 
-  // // Update Contact
-  // const updateContact = async (contact) => {
-  //   const config = {
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //   };
+  // Update Goal
+  const updateGoal = async (goal, id) => {
+    const headers = configureHeaders(localStorage.token);
 
-  //   try {
-  //     const res = await axios.put(
-  //       `/api/contacts/${contact._id}`,
-  //       contact,
-  //       config
-  //     );
-  //     dispatch({
-  //       type: UPDATE_CONTACT,
-  //       payload: res.data,
-  //     });
-  //   } catch (error) {
-  //     dispatch({ type: CONTACT_ERROR, payload: error.response.msg });
-  //   }
-  // };
+    try {
+      const res = await fetch(`api/dailyGoals/goal/${id}`, {
+        method: 'PUT',
+        headers: headers,
+        payload: JSON.stringify(goal),
+      });
+      const data = await res.json();
+      if (!res.ok) throw data.msg;
+      dispatch({
+        type: UPDATE_GOAL,
+        payload: data,
+      });
+      // const config = {
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   },
+      // };
+      // try {
+      //   const res = await axios.put(
+      //     `/api/contacts/${contact._id}`,
+      //     contact,
+      //     config
+      //   );
+      //   dispatch({
+      //     type: UPDATE_CONTACT,
+      //     payload: res.data,
+      //   });
+    } catch (err) {
+      dispatch({ type: GOAL_ERROR, payload: err });
+    }
+  };
 
   // Delete Contact
   const deleteGoal = async (id) => {
@@ -166,7 +179,7 @@ const GoalsState = (props) => {
         //       filtered: state.filtered,
         error: state.error,
         addGoal,
-        //       updateGoal,
+        updateGoal,
         deleteGoal,
         setCurrent,
         clearCurrent,
