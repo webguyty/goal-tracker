@@ -1,0 +1,17 @@
+.setGoal {
+  &__goalInput {
+    height: 400px;
+  }
+
+  &__date {
+    margin: 0;
+  }
+
+  &__deleteButton {
+    transform: translateY(-10px);
+  }
+
+  &__labelContainer {
+    margin-bottom: 10px;
+  }
+}

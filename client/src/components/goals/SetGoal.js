@@ -14,6 +14,14 @@ const SetGoal = () => {
   const [goalsArr, setGoalsArr] = useState([]);
   const [date, setDate] = useState(new Date());
 
+  // Pull in current daily goal. If daily goal is null save as new daily goal
+  useEffect(() => {
+    if (current) {
+      setDate(current.date);
+      setGoalsStr(current.goalsStr);
+    }
+  }, [current]);
+
   const onSave = (e) => {
     e.preventDefault();
     // Split string into array at new line
@@ -34,13 +42,7 @@ const SetGoal = () => {
     addGoal(goal);
   };
 
-  useEffect(() => {
-    if (current) {
-      setDate(current.date);
-      setGoalsStr(current.goalsStr);
-      console.log('fired');
-    }
-  }, [current]);
+  const onDelete = () => {};
 
   return (
     <div className='setGoal'>
@@ -49,7 +51,19 @@ const SetGoal = () => {
         <Moment format='MMM DD YYYY, h:mm a'>{date}</Moment>
       </p>
       <form action='setGoal__form' onSubmit={onSave}>
-        <label htmlFor='w3review'>Add what you want in life</label>
+        <div className='setGoal__labelContainer'>
+          <label htmlFor='setGoal-goalInput'>Add what you want in life</label>
+          {current && (
+            <span className='right'>
+              <a
+                onClick={onDelete()}
+                class='setGoal__deleteButton waves-effect waves-light btn-small red'
+              >
+                <i class='material-icons'>delete_forever</i>
+              </a>
+            </span>
+          )}
+        </div>
 
         <textarea
           id='setGoal-goalInput'
