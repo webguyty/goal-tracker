@@ -10,7 +10,7 @@ import {
   // CLEAR_GOALS,
   SET_CURRENT,
   CLEAR_CURRENT,
-  // DELETE_GOAL,
+  DELETE_GOAL,
   // CLEAR_FILTER,
   // FILTER_GOALS,
 } from '../types';
@@ -97,18 +97,31 @@ const GoalsState = (props) => {
   //   }
   // };
 
-  // // Delete Contact
-  // const deleteContact = async (id) => {
-  //   try {
-  //     await axios.delete(`/api/contacts/${id}`);
-  //     dispatch({
-  //       type: DELETE_CONTACT,
-  //       payload: id,
-  //     });
-  //   } catch (error) {
-  //     dispatch({ type: CONTACT_ERROR, payload: error.response.msg });
-  //   }
-  // };
+  // Delete Contact
+  const deleteGoal = async (id) => {
+    const headers = configureHeaders(localStorage.token);
+    try {
+      const res = await fetch(`api/dailyGoals/goal/${id}`, {
+        method: 'DELETE',
+        headers: headers,
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw data.msg;
+      dispatch({
+        type: DELETE_GOAL,
+        payload: id,
+      });
+
+      // await axios.delete(`/api/contacts/${id}`);
+      // dispatch({
+      //   type: DELETE_CONTACT,
+      //   payload: id,
+      // });
+    } catch (err) {
+      dispatch({ type: GOAL_ERROR, payload: err });
+    }
+  };
 
   // // Clear Contacts
   // const clearContacts = () => {
@@ -154,7 +167,7 @@ const GoalsState = (props) => {
         error: state.error,
         addGoal,
         //       updateGoal,
-        //       deleteGoal,
+        deleteGoal,
         setCurrent,
         clearCurrent,
         //       filterGoals,

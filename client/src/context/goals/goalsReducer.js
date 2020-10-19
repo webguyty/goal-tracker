@@ -4,6 +4,7 @@ import {
   GOAL_ERROR,
   SET_CURRENT,
   CLEAR_CURRENT,
+  DELETE_GOAL,
 } from '../types';
 
 export default (state, action) => {
@@ -29,14 +30,12 @@ export default (state, action) => {
     //       ),
     //       loading: false,
     //     };
-    //   case DELETE_GOAL:
-    //     return {
-    //       ...state,
-    //       goals: state.goals.filter(
-    //         (goal) => goal._id !== action.payload
-    //       ),
-    //       loading: false,
-    //     };
+    case DELETE_GOAL:
+      return {
+        ...state,
+        goals: state.goals.filter((goal) => goal._id !== action.payload),
+        loading: false,
+      };
     //   case CLEAR_GOALS:
     //     return {
     //       ...state,

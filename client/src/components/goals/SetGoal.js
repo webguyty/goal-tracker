@@ -2,13 +2,14 @@ import React, { useState, useEffect, useContext } from 'react';
 import Moment from 'react-moment';
 import AuthContext from '../../context/auth/authContext';
 import GoalsContext from '../../context/goals/goalsContext';
+import M from 'materialize-css/dist/js/materialize.min.js';
 
 const SetGoal = () => {
   const authContext = useContext(AuthContext);
   const goalsContext = useContext(GoalsContext);
 
   const { user } = authContext;
-  const { addGoal, current } = goalsContext;
+  const { addGoal, current, deleteGoal } = goalsContext;
 
   const [goalsStr, setGoalsStr] = useState('');
   const [goalsArr, setGoalsArr] = useState([]);
@@ -42,7 +43,10 @@ const SetGoal = () => {
     addGoal(goal);
   };
 
-  const onDelete = () => {};
+  const onDelete = (id) => {
+    deleteGoal(id);
+    M.toast({ html: `Goal Deleted` });
+  };
 
   return (
     <div className='setGoal'>
@@ -56,10 +60,10 @@ const SetGoal = () => {
           {current && (
             <span className='right'>
               <a
-                onClick={onDelete()}
+                onClick={() => onDelete(current._id)}
                 class='setGoal__deleteButton waves-effect waves-light btn-small red'
               >
-                <i class='material-icons'>delete_forever</i>
+                <i className='medium material-icons'>delete_forever</i>
               </a>
             </span>
           )}
@@ -74,7 +78,7 @@ const SetGoal = () => {
         />
         <div className='row center-align'>
           <button className='btn waves-effect waves-light' type='submit'>
-            Save
+            {!current ? 'Save' : 'Update'}
             <i className='material-icons right'>send</i>
           </button>
         </div>
