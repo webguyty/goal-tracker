@@ -59,6 +59,7 @@ const SetGoal = () => {
       goalsStr,
       goalsArr: goalsSplit,
     };
+    // console.log(goal);
     updateGoal(goal, currentID);
   };
 
@@ -81,7 +82,7 @@ const SetGoal = () => {
             <span className='right'>
               <a
                 onClick={() => onDelete(current._id)}
-                class='setGoal__deleteButton waves-effect waves-light btn-small red'
+                className='setGoal__deleteButton waves-effect waves-light btn-small red'
               >
                 <i className='medium material-icons'>delete_forever</i>
               </a>

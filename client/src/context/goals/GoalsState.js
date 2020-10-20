@@ -77,12 +77,13 @@ const GoalsState = (props) => {
   // Update Goal
   const updateGoal = async (goal, id) => {
     const headers = configureHeaders(localStorage.token);
+    // console.log(JSON.stringify(goal));
 
     try {
       const res = await fetch(`api/dailyGoals/goal/${id}`, {
         method: 'PUT',
         headers: headers,
-        payload: JSON.stringify(goal),
+        body: JSON.stringify(goal),
       });
       const data = await res.json();
       if (!res.ok) throw data.msg;
@@ -151,9 +152,9 @@ const GoalsState = (props) => {
 
   // // Clear Current Contact
   const clearCurrent = () => {
-    //   dispatch({
-    //     type: CLEAR_CURRENT,
-    //   });
+    dispatch({
+      type: CLEAR_CURRENT,
+    });
   };
 
   // // Filter Contacts

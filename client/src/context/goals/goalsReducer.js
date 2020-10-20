@@ -5,6 +5,7 @@ import {
   SET_CURRENT,
   CLEAR_CURRENT,
   DELETE_GOAL,
+  UPDATE_GOAL,
 } from '../types';
 
 export default (state, action) => {
@@ -22,14 +23,14 @@ export default (state, action) => {
         loading: false,
         current: action.payload,
       };
-    //   case UPDATE_GOAL:
-    //     return {
-    //       ...state,
-    //       goals: state.goals.map((goal) =>
-    //         goal._id === action.payload._id ? action.payload : goal
-    //       ),
-    //       loading: false,
-    //     };
+    case UPDATE_GOAL:
+      return {
+        ...state,
+        goals: state.goals.map((goal) =>
+          goal._id === action.payload._id ? action.payload : goal
+        ),
+        loading: false,
+      };
     case DELETE_GOAL:
       return {
         ...state,
@@ -62,6 +63,11 @@ export default (state, action) => {
       return {
         ...state,
         current: action.payload,
+      };
+    case CLEAR_CURRENT:
+      return {
+        ...state,
+        current: null,
       };
     case GOAL_ERROR:
       return {

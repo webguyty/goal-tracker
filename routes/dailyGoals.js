@@ -59,33 +59,33 @@ router.delete('/goal/:id', auth, async (req, res) => {
 // @route		PUT api/contacts/:id
 // @desc		Update contact
 // @access 	Private
-router.put('/:id', auth, async (req, res) => {
-  const { goalsStr, goalsArr } = req.body.goal;
+router.put('/goal/:id', auth, async (req, res) => {
+  const { goalsStr, goalsArr } = req.body;
 
-  // Build contact object
-  const goalFields = {};
+  // Build goal object
+  const goalFields = { goalsStr, goalsArr };
 
-  if (goalsStr) goalFields.goalsStr = goalsStr;
-  if (goalsArr) goalFields.goalsArr = goalsArr;
+  // if (goalsStr) goalFields.goalsStr = goalsStr;
+  // if (goalsArr) goalFields.goalsArr = goalsArr;
 
   try {
-    const goal = await DailyGoals.findById(req.params.id);
+    let goal = await DailyGoals.findById(req.params.id);
 
     if (!goal) return res.status(404).json({ msg: 'goal not found' });
 
     // Make sure user owns goal
-    if (goal.user.toString() !== req.user.id) {
+    if (goal.userID.toString() !== req.user.id) {
       return res.status(401).json({ msg: 'Not authorized' });
     }
 
-    goal = await goal.findByIdAndUpdate(
+    goal = await DailyGoals.findByIdAndUpdate(
       req.params.id,
       { $set: goalFields },
       { new: true }
     );
 
     res.json(goal);
-  } catch (error) {
+  } catch (err) {
     console.error(err);
     res.status(500).send('Server error');
   }
