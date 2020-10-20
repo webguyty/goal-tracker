@@ -1,18 +1,24 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Moment from 'react-moment';
+import M from 'materialize-css/dist/js/materialize.min.js';
+
 import AuthContext from '../../context/auth/authContext';
 import GoalsContext from '../../context/goals/goalsContext';
-import M from 'materialize-css/dist/js/materialize.min.js';
 
 const SetGoal = () => {
   const authContext = useContext(AuthContext);
   const goalsContext = useContext(GoalsContext);
 
   const { user } = authContext;
-  const { addGoal, current, deleteGoal, updateGoal } = goalsContext;
+  const {
+    addGoal,
+    current,
+    deleteGoal,
+    updateGoal,
+    clearCurrent,
+  } = goalsContext;
 
   const [goalsStr, setGoalsStr] = useState('');
-  const [goalsArr, setGoalsArr] = useState([]);
   const [date, setDate] = useState(new Date());
 
   // Read any current goals selected
@@ -35,8 +41,6 @@ const SetGoal = () => {
       .filter((g) => g.match(/[a-z]|[A-Z]|[0-9]/g))
       .map((g) => g.trim());
 
-    setGoalsArr([...goalsSplit]);
-
     const goal = {
       userID: user._id,
       goalsStr,
@@ -52,8 +56,6 @@ const SetGoal = () => {
       .filter((g) => g.match(/[a-z]|[A-Z]|[0-9]/g))
       .map((g) => g.trim());
 
-    setGoalsArr([...goalsSplit]);
-
     const goal = {
       userID: user._id,
       goalsStr,
@@ -61,6 +63,13 @@ const SetGoal = () => {
     };
     // console.log(goal);
     updateGoal(goal, currentID);
+  };
+
+  // Button for new daily goal
+  const newDailyGoal = () => {
+    clearCurrent();
+    setGoalsStr('');
+    setDate(new Date());
   };
 
   // Remove Goal
@@ -80,12 +89,12 @@ const SetGoal = () => {
           <label htmlFor='setGoal-goalInput'>Add what you want in life</label>
           {current && (
             <span className='right'>
-              <a
+              <button
                 onClick={() => onDelete(current._id)}
                 className='setGoal__deleteButton waves-effect waves-light btn-small red'
               >
                 <i className='medium material-icons'>delete_forever</i>
-              </a>
+              </button>
             </span>
           )}
         </div>
@@ -101,6 +110,7 @@ const SetGoal = () => {
           <button
             className='btn waves-effect waves-light'
             type='submit'
+            // Save if new goal, update if current is set
             onClick={!current ? onSave : (e) => onUpdate(e, current._id)}
           >
             {!current ? 'Save' : 'Update'}
@@ -108,6 +118,12 @@ const SetGoal = () => {
           </button>
         </div>
       </form>
+      <button
+        className='btn-floating btn-large waves-effect waves-light red right'
+        onClick={() => newDailyGoal()}
+      >
+        <i className='material-icons'>add</i>
+      </button>
     </div>
   );
 };

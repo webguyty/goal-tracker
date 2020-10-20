@@ -16,6 +16,9 @@ const GoalsList = () => {
   return (
     <div className='goalsList'>
       <h4 className='center-align'>Goals List</h4>
+      {goals.length === 0 && (
+        <p className='center-align blue-text'>Add your first goal!</p>
+      )}
       <ul className='goalsList__ul'>
         {goals.map((goal) => (
           <GoalsListItem goal={goal} key={goal._id} />

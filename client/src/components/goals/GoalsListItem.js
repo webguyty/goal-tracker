@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from 'react';
+import React, { Fragment, useContext, useState } from 'react';
 import Moment from 'react-moment';
 import GoalsContext from '../../context/goals/goalsContext';
 
@@ -8,10 +8,21 @@ const GoalsListItem = ({ goal }) => {
 
   const { goalsStr, date } = goal;
 
-  // Split string at new line
+  const [showHover, setShowHover] = useState(false);
+
   return (
-    <div className='goalsList__item' onClick={() => setCurrent(goal)}>
-      <p className='goalsList__item__date'>
+    <div
+      className='goalsList__item'
+      onClick={() => setCurrent(goal)}
+      onMouseEnter={() => setShowHover(true)}
+      onMouseLeave={() => setShowHover(false)}
+    >
+      {showHover && (
+        <p className='goalsList__item__hoverText'>
+          <i class='material-icons blue-text'>edit</i>
+        </p>
+      )}
+      <p className='goalsList__item__date '>
         <Moment format='MMM DD YYYY, h:mm a'>{date}</Moment>
       </p>
       {goalsStr.split('\n').map((item, key) => {
