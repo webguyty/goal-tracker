@@ -12,12 +12,10 @@ const Dashboard = () => {
 
   const { loadUser, loading } = authContext;
 
-  const { getGoals, goals } = goalsContext;
+  // const { getGoals, goals } = goalsContext;
 
   useEffect(() => {
     loadUser();
-    // getGoals();
-
     // eslint-disable-next-line
   }, []);
 

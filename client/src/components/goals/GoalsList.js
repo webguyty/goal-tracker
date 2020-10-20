@@ -1,11 +1,9 @@
 import React, { useEffect, useContext } from 'react';
-
 import GoalsListItem from './GoalsListItem';
-import AuthContext from '../../context/auth/authContext';
+
 import GoalsContext from '../../context/goals/goalsContext';
 
 const GoalsList = () => {
-  const authContext = useContext(AuthContext);
   const goalsContext = useContext(GoalsContext);
 
   const { getGoals, goals } = goalsContext;

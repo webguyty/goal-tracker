@@ -3,11 +3,14 @@ import { Link } from 'react-router-dom';
 
 import M from 'materialize-css/dist/js/materialize.min.js';
 import AuthContext from '../../context/auth/authContext';
+import GoalsContext from '../../context/goals/goalsContext';
 
 const Navbar = () => {
   const authContext = useContext(AuthContext);
+  const goalsContext = useContext(GoalsContext);
 
   const { isAuthenticated, logout } = authContext;
+  const { clearGoals } = goalsContext;
 
   useEffect(() => {
     // Initialize Sidebar
@@ -33,7 +36,13 @@ const Navbar = () => {
   const linksUser = (
     <Fragment>
       <li>
-        <Link to='/' onClick={() => logout()}>
+        <Link
+          to='/'
+          onClick={() => {
+            clearGoals();
+            logout();
+          }}
+        >
           Logout
         </Link>
       </li>

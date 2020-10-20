@@ -65,9 +65,6 @@ router.put('/goal/:id', auth, async (req, res) => {
   // Build goal object
   const goalFields = { goalsStr, goalsArr };
 
-  // if (goalsStr) goalFields.goalsStr = goalsStr;
-  // if (goalsArr) goalFields.goalsArr = goalsArr;
-
   try {
     let goal = await DailyGoals.findById(req.params.id);
 

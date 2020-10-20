@@ -4,6 +4,7 @@ import {
   GOAL_ERROR,
   SET_CURRENT,
   CLEAR_CURRENT,
+  CLEAR_GOALS,
   DELETE_GOAL,
   UPDATE_GOAL,
 } from '../types';
@@ -37,14 +38,14 @@ export default (state, action) => {
         goals: state.goals.filter((goal) => goal._id !== action.payload),
         loading: false,
       };
-    //   case CLEAR_GOALS:
-    //     return {
-    //       ...state,
-    //       goals: null,
-    //       filtered: null,
-    //       error: null,
-    //       current: null,
-    //     };
+    case CLEAR_GOALS:
+      return {
+        ...state,
+        goals: [],
+        filtered: null,
+        error: null,
+        current: null,
+      };
     //   ?
     //   case FILTER_GOALS:
     //     return {

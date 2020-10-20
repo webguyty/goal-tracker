@@ -7,7 +7,7 @@ import {
   GOAL_ERROR,
   ADD_GOAL,
   UPDATE_GOAL,
-  // CLEAR_GOALS,
+  CLEAR_GOALS,
   SET_CURRENT,
   CLEAR_CURRENT,
   DELETE_GOAL,
@@ -137,10 +137,10 @@ const GoalsState = (props) => {
     }
   };
 
-  // // Clear Contacts
-  // const clearContacts = () => {
-  //   dispatch({ type: CLEAR_CONTACTS });
-  // };
+  // Clear Goals
+  const clearGoals = () => {
+    dispatch({ type: CLEAR_GOALS });
+  };
 
   // // Set Current Contact
   const setCurrent = (contact) => {
@@ -187,7 +187,7 @@ const GoalsState = (props) => {
         //       filterGoals,
         //       clearFilter,
         getGoals,
-        //       clearGoals,
+        clearGoals,
       }}
     >
       {props.children}

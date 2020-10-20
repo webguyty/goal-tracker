@@ -8,10 +8,6 @@ const GoalsListItem = ({ goal }) => {
 
   const { goalsStr, date } = goal;
 
-  const onClick = (g) => {
-    setCurrent(g);
-  };
-
   // Split string at new line
   return (
     <div className='goalsList__item' onClick={() => setCurrent(goal)}>

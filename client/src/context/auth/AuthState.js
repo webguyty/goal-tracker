@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useContext } from 'react';
 import AuthContext from './authContext';
 import authReducer from './authReducer';
 import configureHeaders from '../../utils/configureHeaders';
