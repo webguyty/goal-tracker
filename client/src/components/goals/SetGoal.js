@@ -73,53 +73,63 @@ const SetGoal = () => {
   };
 
   // Remove Goal
-  const onDelete = (id) => {
+  const onDelete = (e, id) => {
+    e.preventDefault();
     deleteGoal(id);
     M.toast({ html: `Goal Deleted` });
   };
 
   return (
     <div className='setGoal'>
-      <h3>We are adding some goals</h3>
-      <p className='setGoal__date'>
-        <Moment format='MMM DD YYYY, h:mm a'>{date}</Moment>
-      </p>
-      <form className='setGoal__form'>
-        <div className='setGoal__labelContainer'>
-          <label htmlFor='setGoal-goalInput'>Add what you want in life</label>
-          {current && (
-            <span className='right'>
-              <button
-                onClick={() => onDelete(current._id)}
-                className='setGoal__deleteButton waves-effect waves-light btn-small red'
-              >
-                <i className='medium material-icons'>delete_forever</i>
-              </button>
-            </span>
-          )}
-        </div>
+      <div className='row'>
+        <div className='col m8 offset-m2'>
+          <h3>We are adding some goals</h3>
+          <p className='setGoal__date'>
+            <Moment format='MMM DD YYYY, h:mm a'>{date}</Moment>
+          </p>
+          <form className='setGoal__form'>
+            <div className='setGoal__labelContainer'>
+              <label htmlFor='setGoal-goalInput'>
+                Add what you want in life
+              </label>
+              {current && (
+                <span className='right'>
+                  <button
+                    onClick={(e) => onDelete(e, current._id)}
+                    className='setGoal__deleteButton waves-effect waves-light btn-small red'
+                  >
+                    <i className='medium material-icons'>delete_forever</i>
+                  </button>
+                </span>
+              )}
+            </div>
 
-        <textarea
-          id='setGoal-goalInput'
-          className='setGoal__goalInput'
-          placeholder='This is some text'
-          value={goalsStr}
-          onChange={(e) => setGoalsStr(e.target.value)}
-        />
-        <div className='row center-align'>
-          <button
-            className='btn waves-effect waves-light'
-            type='submit'
-            // Save if new goal, update if current is set
-            onClick={!current ? onSave : (e) => onUpdate(e, current._id)}
-          >
-            {!current ? 'Save' : 'Update'}
-            <i className='material-icons right'>send</i>
-          </button>
+            <textarea
+              id='setGoal-goalInput'
+              className='setGoal__goalInput'
+              placeholder='This is some text'
+              value={goalsStr}
+              onChange={(e) => setGoalsStr(e.target.value)}
+            />
+            <div className='row center-align'>
+              <button
+                className='btn waves-effect waves-light'
+                type='submit'
+                // Save if new goal, update if current is set
+                onClick={!current ? onSave : (e) => onUpdate(e, current._id)}
+              >
+                {!current ? 'Save' : 'Update'}
+                <i className='material-icons right'>send</i>
+              </button>
+            </div>
+          </form>
         </div>
-      </form>
+      </div>
+
+      {/* Floating add button */}
       <button
         className='btn-floating btn-large waves-effect waves-light red right'
+        style={{ marginRight: '10px' }}
         onClick={() => newDailyGoal()}
       >
         <i className='material-icons'>add</i>

@@ -26,12 +26,12 @@ const Dashboard = () => {
   return (
     <div className='dashboard__page'>
       <div className='row'>
-        <div className='col s4 goalsList__BG'>
+        <div className='col s12 m3 goalsList__BG'>
           <GoalsList />
         </div>
-        <div className='col s8'>
+        <div className='col s12 m9'>
           <div className='row'>
-            <div className='col s12 m10'>
+            <div className='col s12'>
               <SetGoal />
             </div>
           </div>
