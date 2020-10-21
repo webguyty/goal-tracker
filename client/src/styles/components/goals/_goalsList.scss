@@ -21,6 +21,26 @@
       top: 5px;
       right: 10px;
       margin: 0;
+
+      // For react transition group
+
+      &-enter {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      &-enter-active {
+        opacity: 1;
+        transform: translateX(0);
+        transition: opacity 250ms, transform 200ms;
+      }
+      &-exit {
+        opacity: 1;
+      }
+      &-exit-active {
+        opacity: 0;
+        transform: scale(0.9);
+        transition: opacity 250ms, transform 200ms;
+      }
     }
 
     &__date {

@@ -1,6 +1,6 @@
 import React, { Fragment, useContext, useState } from 'react';
 import Moment from 'react-moment';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { CSSTransition } from 'react-transition-group';
 import GoalsContext from '../../context/goals/goalsContext';
 
 const GoalsListItem = ({ goal }) => {
@@ -18,11 +18,22 @@ const GoalsListItem = ({ goal }) => {
       onMouseEnter={() => setShowHover(true)}
       onMouseLeave={() => setShowHover(false)}
     >
-      {showHover && (
+      {/* {showHover && (
         <p className='goalsList__item__hoverText'>
           <i className='material-icons blue-text'>edit</i>
         </p>
-      )}
+      )} */}
+      <CSSTransition
+        timeout={300}
+        in={showHover}
+        classNames='goalsList__item__hoverText'
+        unmountOnExit
+      >
+        <p className='goalsList__item__hoverText blue-text'>
+          <i className='material-icons '>edit</i>
+        </p>
+      </CSSTransition>
+
       <p className='goalsList__item__date '>
         <Moment format='MMM DD YYYY, h:mm a'>{date}</Moment>
       </p>
