@@ -22,7 +22,7 @@ export default (state, action) => {
         ...state,
         goals: [action.payload, ...state.goals],
         loading: false,
-        current: action.payload,
+        // current: action.payload,
       };
     case UPDATE_GOAL:
       return {

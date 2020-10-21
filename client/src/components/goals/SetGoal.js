@@ -47,6 +47,8 @@ const SetGoal = () => {
       goalsArr: goalsSplit,
     };
     addGoal(goal);
+    M.toast({ html: `Goal Saved` });
+    newDailyGoal();
   };
 
   const onUpdate = (e, currentID) => {
@@ -63,6 +65,7 @@ const SetGoal = () => {
     };
     // console.log(goal);
     updateGoal(goal, currentID);
+    M.toast({ html: `Goal Updated` });
   };
 
   // Button for new daily goal
@@ -76,6 +79,7 @@ const SetGoal = () => {
   const onDelete = (e, id) => {
     e.preventDefault();
     deleteGoal(id);
+    newDailyGoal();
     M.toast({ html: `Goal Deleted` });
   };
 

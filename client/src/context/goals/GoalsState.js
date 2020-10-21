@@ -63,7 +63,7 @@ const GoalsState = (props) => {
 
       // If response is false, throw error with message from auth middleware
       if (!res.ok) throw data.msg;
-      console.log(data);
+
       // const res = await axios.post('/api/contacts', contact, config);
       dispatch({
         type: ADD_GOAL,
@@ -77,7 +77,6 @@ const GoalsState = (props) => {
   // Update Goal
   const updateGoal = async (goal, id) => {
     const headers = configureHeaders(localStorage.token);
-    // console.log(JSON.stringify(goal));
 
     try {
       const res = await fetch(`api/dailyGoals/goal/${id}`, {
@@ -91,21 +90,6 @@ const GoalsState = (props) => {
         type: UPDATE_GOAL,
         payload: data,
       });
-      // const config = {
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      // };
-      // try {
-      //   const res = await axios.put(
-      //     `/api/contacts/${contact._id}`,
-      //     contact,
-      //     config
-      //   );
-      //   dispatch({
-      //     type: UPDATE_CONTACT,
-      //     payload: res.data,
-      //   });
     } catch (err) {
       dispatch({ type: GOAL_ERROR, payload: err });
     }
@@ -126,12 +110,6 @@ const GoalsState = (props) => {
         type: DELETE_GOAL,
         payload: id,
       });
-
-      // await axios.delete(`/api/contacts/${id}`);
-      // dispatch({
-      //   type: DELETE_CONTACT,
-      //   payload: id,
-      // });
     } catch (err) {
       dispatch({ type: GOAL_ERROR, payload: err });
     }
