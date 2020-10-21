@@ -51,7 +51,7 @@ const Navbar = () => {
 
   return (
     <Fragment>
-      <nav>
+      <nav className='nav '>
         <div className='nav-wrapper'>
           <Link to='/' className='brand-logo'>
             Goal Tracker

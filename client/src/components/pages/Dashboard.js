@@ -29,13 +29,13 @@ const Dashboard = () => {
         <div className='col s12 m3 goalsList__BG'>
           <GoalsList />
         </div>
+        {/* <div className='col s12 m9'> */}
+
         <div className='col s12 m9'>
-          <div className='row'>
-            <div className='col s12'>
-              <SetGoal />
-            </div>
-          </div>
+          <SetGoal />
         </div>
+
+        {/* </div> */}
       </div>
       {/* Main row */}
     </div>

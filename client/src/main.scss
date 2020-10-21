@@ -1,3 +1,7 @@
-@import './styles/components/navbar';
+@import './styles/layout/nav';
+
+@import './styles/pages/home';
+@import './styles/pages/dashboard';
+
 @import './styles/components/goals/setGoal';
 @import './styles/components/goals/goalsList';

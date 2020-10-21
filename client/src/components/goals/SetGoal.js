@@ -132,8 +132,8 @@ const SetGoal = () => {
 
       {/* Floating add button */}
       <button
-        className='btn-floating btn-large waves-effect waves-light red right'
-        style={{ marginRight: '10px' }}
+        className='btn-floating btn-large waves-effect waves-light red bottom setGoal__floatBtn'
+        // style={{ marginRight: '10px' }}
         onClick={() => newDailyGoal()}
       >
         <i className='material-icons'>add</i>
