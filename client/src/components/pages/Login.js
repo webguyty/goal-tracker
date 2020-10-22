@@ -32,7 +32,7 @@ const Login = () => {
           <h2 className='center-align'>Login</h2>
           {/* Login Form */}
           <div className='row'>
-            <form onSubmit={onSubmit} className='col s12 m8 offset-m2'>
+            <form onSubmit={onSubmit} className='col s12 m4 offset-m4'>
               <div className='row'>
                 <div className='input-field col s12'>
                   <input

@@ -1,0 +1,20 @@
+.home__page {
+  & h1 {
+    text-align: center;
+  }
+
+  & h4 {
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  & h5 {
+    margin-top: 50px;
+  }
+
+  &__bigText {
+    text-align: center;
+    font-size: 4rem;
+    font-weight: 300;
+  }
+}

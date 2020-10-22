@@ -29,14 +29,59 @@ const Home = () => {
 
   return (
     <div className='home__page'>
-      <div className='row'>
-        <div className='col sm12'>
-          <h1>Welcome to Goal Tracker!</h1>
-          <p>This is the public homepage</p>
-          <p>
-            If you are logged in you will be redirected to the private{' '}
-            <Link to='/dashboard'>dashboard</Link>
-          </p>
+      <div className='container'>
+        <div className='row'>
+          <div className='col s12'>
+            <h1>Welcome to Goal Tracker!</h1>
+            <h4>A tool for motivation and goal acquisition</h4>
+            <h5>Directions:</h5>
+          </div>
+        </div>
+
+        {/* Cards */}
+        <div class='row'>
+          <div class='col s12 m4'>
+            <div class='card blue'>
+              <div class='card-content white-text'>
+                <span class='card-title'>Write down your goals</span>
+                <p>
+                  Write down any goals that cross your mind. Make sure to write
+                  them in present tense as if you have already achieved them.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class='col s12 m4'>
+            <div class='card blue'>
+              <div class='card-content white-text'>
+                <span class='card-title'>Repeat everyday</span>
+                <p>
+                  Invest 5 minutes everyday to achieve the goals of your dreams.
+                  Be as specific as you like and let your imagination run wild.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class='col s12 m4'>
+            <div class='card blue'>
+              <div class='card-content white-text'>
+                <span class='card-title'>Examples</span>
+                <p>
+                  I have $4 million in investments <br />
+                  I have a great relationship with my family <br />I bike 100
+                  miles for fun
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* End cards */}
+        <div className='row'>
+          <div className='col s12'>
+            <p className='home__page__bigText blue-text text-lighten-2'>
+              Program your subconscious for success
+            </p>
+          </div>
         </div>
       </div>
     </div>
