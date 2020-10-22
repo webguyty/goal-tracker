@@ -67,9 +67,12 @@ const Home = () => {
               <div class='card-content white-text'>
                 <span class='card-title'>Examples</span>
                 <p>
-                  I have $4 million in investments <br />
-                  I have a great relationship with my family <br />I bike 100
-                  miles for fun
+                  I have $4 million in investments
+                  <br />
+                  I have a great relationship with my family
+                  <br />
+                  I bike 100 miles for fun
+                  <br />I travel and explore new places
                 </p>
               </div>
             </div>
